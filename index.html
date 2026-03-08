@@ -6,47 +6,485 @@
 <title>給 昀 的</title>
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Serif+TC:wght@200;300&family=Playfair+Display:ital@1&display=swap');
- *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
- html, body { width: 100%; height: 100%; overflow: hidden; }
- body { background: #aed4ea; display: flex; align-items: center; justify-content: center; font-family: 'Iansui', 'Noto Serif TC', serif; }
- .bg { position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.45) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 20% 80%, rgba(178,215,240,0.3) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 80% 60%, rgba(140,195,225,0.2) 0%, transparent 50%), linear-gradient(175deg, #c8e6f5 0%, #aed4ea 40%, #91c4e0 100%); z-index: 0; }
- .cloud-glow { position: fixed; border-radius: 50%; background: rgba(255,255,255,0.12); filter: blur(60px); z-index: 0; }
+
+ *, *::before, *::after {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ html, body {
+ width: 100%;
+ height: 100%;
+ overflow: hidden;
+ }
+
+ body {
+ background: #aed4ea;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-family: 'Iansui', 'Noto Serif TC', serif;
+ }
+
+ /* layered sky gradient */
+ .bg {
+ position: fixed;
+ inset: 0;
+ background:
+ radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,255,255,0.45) 0%, transparent 60%),
+ radial-gradient(ellipse 60% 40% at 20% 80%, rgba(178,215,240,0.3) 0%, transparent 55%),
+ radial-gradient(ellipse 50% 50% at 80% 60%, rgba(140,195,225,0.2) 0%, transparent 50%),
+ linear-gradient(175deg, #c8e6f5 0%, #aed4ea 40%, #91c4e0 100%);
+ z-index: 0;
+ }
+
+ /* soft background glow */
+ .cloud-glow {
+ position: fixed;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.12);
+ filter: blur(60px);
+ z-index: 0;
+ }
  .glow-1 { width: 350px; height: 220px; top: 3%; left: -8%; }
  .glow-2 { width: 280px; height: 200px; bottom: 10%; right: -5%; }
- .sun { position: fixed; top: -8%; right: 12%; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(255,248,230,0.7) 0%, rgba(255,240,200,0.4) 25%, rgba(255,225,170,0.15) 50%, transparent 70%); z-index: 0; opacity: 0; animation: sunAppear 4s ease forwards 0.5s; }
- .sun-halo { position: fixed; top: -18%; right: 2%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255,245,220,0.25) 0%, rgba(255,235,195,0.1) 40%, transparent 65%); filter: blur(20px); z-index: 0; opacity: 0; animation: sunAppear 5s ease forwards 0.3s; }
- .sun-rays { position: fixed; top: -12%; right: 5%; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,250,235,0.18) 0%, rgba(255,242,210,0.06) 50%, transparent 70%); filter: blur(30px); z-index: 0; opacity: 0; animation: sunAppear 6s ease forwards 1s, sunPulse 8s ease-in-out infinite 4s; }
- @keyframes sunAppear { from { opacity: 0; } to { opacity: 1; } }
- @keyframes sunPulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.08); opacity: 0.85; } 100% { transform: scale(1); opacity: 1; } }
- .cloud { position: fixed; z-index: 0; opacity: 0; animation: cloudFadeIn 2.5s ease forwards, cloudDrift 50s ease-in-out infinite; }
- .cloud .puff { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.92); box-shadow: inset 0 -8px 16px rgba(160,200,230,0.25), 0 4px 12px rgba(160,200,230,0.15); }
- .cloud .puff.shadow { background: rgba(210,230,245,0.6); box-shadow: none; }
- .cloud .puff.highlight { background: rgba(255,255,255,0.98); box-shadow: inset 0 4px 8px rgba(255,255,255,1), inset 0 -6px 14px rgba(170,210,235,0.2); }
- .cloud-1 { top: 3%; left: 2%; width: 180px; height: 95px; } .cloud-1 .p1 { width: 75px; height: 60px; bottom: 12px; left: 8px; border-radius: 52% 48% 45% 50%; } .cloud-1 .p2.highlight { width: 70px; height: 68px; bottom: 18px; left: 42px; border-radius: 48% 52% 42% 50%; } .cloud-1 .p3 { width: 58px; height: 55px; bottom: 20px; left: 82px; border-radius: 50% 46% 48% 44%; } .cloud-1 .p4 { width: 42px; height: 38px; bottom: 14px; left: 120px; border-radius: 46% 50% 44% 48%; } .cloud-1 .p5.shadow { width: 160px; height: 28px; bottom: 0; left: 5px; border-radius: 40% 45% 50% 42%; } .cloud-1 .p6 { width: 35px; height: 30px; bottom: 28px; left: 28px; border-radius: 50% 44% 48% 46%; }
- .container { position: relative; z-index: 1; text-align: center; padding: 3rem 2rem; max-width: 400px; width: 90%; }
- .line { opacity: 0; transform: translateY(14px); animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
- .line-thai { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-bottom: 1.6rem; animation-delay: 0.2s; }
- .line-1 { font-size: 1.18rem; color: #fff; margin-bottom: 0.5rem; animation-delay: 0.6s; }
- .line-2 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-bottom: 2.6rem; animation-delay: 1s; }
- .line-3 { font-size: 1.15rem; color: #1a3d52; line-height: 2.5; animation-delay: 1.8s; }
- .line-4 { font-size: 1.15rem; color: #1a3d52; line-height: 2.5; animation-delay: 2.9s; }
- .line-5 { font-size: 1.15rem; color: #1a3d52; line-height: 2.5; animation-delay: 4s; }
- .ig-handle { font-size: 1.3rem; color: #fff; text-shadow: 0 2px 16px rgba(80,140,180,0.35); }
- @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
- @keyframes cloudFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
- @keyframes cloudDrift { 0% { transform: translateX(0); } 100% { transform: translateX(0); } }
+
+ /* sun glow - warm light behind clouds */
+ .sun {
+ position: fixed;
+ top: -8%;
+ right: 12%;
+ width: 180px;
+ height: 180px;
+ border-radius: 50%;
+ background: radial-gradient(
+ circle,
+ rgba(255,248,230,0.7) 0%,
+ rgba(255,240,200,0.4) 25%,
+ rgba(255,225,170,0.15) 50%,
+ transparent 70%
+ );
+ z-index: 0;
+ opacity: 0;
+ animation: sunAppear 4s ease forwards 0.5s;
+ }
+
+ .sun-halo {
+ position: fixed;
+ top: -18%;
+ right: 2%;
+ width: 340px;
+ height: 340px;
+ border-radius: 50%;
+ background: radial-gradient(
+ circle,
+ rgba(255,245,220,0.25) 0%,
+ rgba(255,235,195,0.1) 40%,
+ transparent 65%
+ );
+ filter: blur(20px);
+ z-index: 0;
+ opacity: 0;
+ animation: sunAppear 5s ease forwards 0.3s;
+ }
+
+ .sun-rays {
+ position: fixed;
+ top: -12%;
+ right: 5%;
+ width: 260px;
+ height: 260px;
+ border-radius: 50%;
+ background: radial-gradient(
+ circle,
+ rgba(255,250,235,0.18) 0%,
+ rgba(255,242,210,0.06) 50%,
+ transparent 70%
+ );
+ filter: blur(30px);
+ z-index: 0;
+ opacity: 0;
+ animation: sunAppear 6s ease forwards 1s, sunPulse 8s ease-in-out infinite 4s;
+ }
+
+ @keyframes sunAppear {
+ from { opacity: 0; }
+ to { opacity: 1; }
+ }
+
+ @keyframes sunPulse {
+ 0% { transform: scale(1); opacity: 1; }
+ 50% { transform: scale(1.08); opacity: 0.85; }
+ 100% { transform: scale(1); opacity: 1; }
+ }
+
+ /* fluffy cumulus cloud */
+ .cloud {
+ position: fixed;
+ z-index: 0;
+ opacity: 0;
+ animation: cloudFadeIn 2.5s ease forwards, cloudDrift 50s ease-in-out infinite;
+ }
+
+ .cloud .puff {
+ position: absolute;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.92);
+ box-shadow:
+ inset 0 -8px 16px rgba(160,200,230,0.25),
+ 0 4px 12px rgba(160,200,230,0.15);
+ }
+ .cloud .puff.shadow {
+ background: rgba(210,230,245,0.6);
+ box-shadow: none;
+ }
+ .cloud .puff.highlight {
+ background: rgba(255,255,255,0.98);
+ box-shadow:
+ inset 0 4px 8px rgba(255,255,255,1),
+ inset 0 -6px 14px rgba(170,210,235,0.2);
+ }
+
+ /* ---- cloud 1: large cumulus, top-left ---- */
+ .cloud-1 {
+ top: 3%;
+ left: 2%;
+ width: 180px;
+ height: 95px;
+ animation-delay: 0.3s, 0s;
+ animation-duration: 2.5s, 55s;
+ }
+ .cloud-1 .p1 { width: 75px; height: 60px; bottom: 12px; left: 8px; border-radius: 52% 48% 45% 50%; }
+ .cloud-1 .p2.highlight { width: 70px; height: 68px; bottom: 18px; left: 42px; border-radius: 48% 52% 42% 50%; }
+ .cloud-1 .p3 { width: 58px; height: 55px; bottom: 20px; left: 82px; border-radius: 50% 46% 48% 44%; }
+ .cloud-1 .p4 { width: 42px; height: 38px; bottom: 14px; left: 120px; border-radius: 46% 50% 44% 48%; }
+ .cloud-1 .p5.shadow { width: 160px; height: 28px; bottom: 0; left: 5px; border-radius: 40% 45% 50% 42%; }
+ .cloud-1 .p6 { width: 35px; height: 30px; bottom: 28px; left: 28px; border-radius: 50% 44% 48% 46%; }
+
+ /* ---- cloud 2: medium, top-right ---- */
+ .cloud-2 {
+ top: 2%;
+ right: 8%;
+ width: 150px;
+ height: 80px;
+ animation-delay: 0.8s, 4s;
+ animation-duration: 2.5s, 62s;
+ }
+ .cloud-2 .p1 { width: 60px; height: 50px; bottom: 10px; left: 10px; border-radius: 50% 44% 48% 46%; }
+ .cloud-2 .p2.highlight { width: 58px; height: 58px; bottom: 16px; left: 38px; border-radius: 46% 52% 44% 50%; }
+ .cloud-2 .p3 { width: 48px; height: 44px; bottom: 12px; left: 72px; border-radius: 48% 50% 46% 44%; }
+ .cloud-2 .p4 { width: 32px; height: 28px; bottom: 8px; left: 102px; border-radius: 44% 48% 50% 46%; }
+ .cloud-2 .p5.shadow { width: 125px; height: 22px; bottom: 0; left: 8px; border-radius: 42% 48% 45% 50%; }
+
+ /* ---- cloud 3: large, bottom-left ---- */
+ .cloud-3 {
+ bottom: 8%;
+ left: -4%;
+ width: 200px;
+ height: 90px;
+ animation-delay: 1.5s, 7s;
+ animation-duration: 2.5s, 50s;
+ }
+ .cloud-3 .p1 { width: 68px; height: 55px; bottom: 12px; left: 15px; border-radius: 46% 52% 48% 44%; }
+ .cloud-3 .p2.highlight { width: 72px; height: 65px; bottom: 18px; left: 52px; border-radius: 50% 46% 44% 52%; }
+ .cloud-3 .p3 { width: 60px; height: 52px; bottom: 15px; left: 95px; border-radius: 44% 50% 48% 46%; }
+ .cloud-3 .p4 { width: 45px; height: 40px; bottom: 10px; left: 132px; border-radius: 48% 44% 50% 46%; }
+ .cloud-3 .p5.shadow { width: 175px; height: 26px; bottom: 0; left: 10px; border-radius: 38% 45% 48% 42%; }
+ .cloud-3 .p6 { width: 38px; height: 32px; bottom: 24px; left: 35px; border-radius: 50% 46% 44% 48%; }
+
+ /* ---- cloud 4: small, bottom-right ---- */
+ .cloud-4 {
+ bottom: 16%;
+ right: 3%;
+ width: 120px;
+ height: 60px;
+ animation-delay: 1s, 2s;
+ animation-duration: 2.5s, 65s;
+ }
+ .cloud-4 .p1 { width: 50px; height: 42px; bottom: 8px; left: 8px; border-radius: 48% 50% 44% 46%; }
+ .cloud-4 .p2.highlight { width: 48px; height: 48px; bottom: 12px; left: 35px; border-radius: 50% 44% 48% 46%; }
+ .cloud-4 .p3 { width: 38px; height: 34px; bottom: 8px; left: 65px; border-radius: 44% 48% 50% 46%; }
+ .cloud-4 .p4.shadow { width: 100px; height: 18px; bottom: 0; left: 6px; border-radius: 42% 48% 44% 50%; }
+
+ /* ---- cloud 5: wispy small, mid-left ---- */
+ .cloud-5 {
+ top: 28%;
+ left: -5%;
+ width: 110px;
+ height: 52px;
+ animation-delay: 2s, 10s;
+ animation-duration: 2.5s, 70s;
+ }
+ .cloud-5 .p1 { width: 45px; height: 38px; bottom: 6px; left: 5px; border-radius: 50% 46% 44% 48%; }
+ .cloud-5 .p2.highlight { width: 42px; height: 40px; bottom: 10px; left: 30px; border-radius: 46% 50% 48% 44%; }
+ .cloud-5 .p3 { width: 36px; height: 30px; bottom: 7px; left: 55px; border-radius: 48% 44% 50% 46%; }
+ .cloud-5 .p4 { width: 28px; height: 22px; bottom: 4px; left: 76px; border-radius: 44% 50% 46% 48%; }
+ .cloud-5 .p5.shadow { width: 90px; height: 16px; bottom: 0; left: 5px; border-radius: 40% 45% 48% 42%; }
+
+ /* ---- cloud 6: tiny accent, mid-right ---- */
+ .cloud-6 {
+ top: 22%;
+ right: -2%;
+ width: 85px;
+ height: 42px;
+ animation-delay: 1.8s, 15s;
+ animation-duration: 2.5s, 58s;
+ }
+ .cloud-6 .p1 { width: 38px; height: 32px; bottom: 5px; left: 5px; border-radius: 48% 50% 44% 46%; }
+ .cloud-6 .p2.highlight { width: 35px; height: 34px; bottom: 8px; left: 25px; border-radius: 50% 44% 48% 46%; }
+ .cloud-6 .p3 { width: 28px; height: 24px; bottom: 5px; left: 48px; border-radius: 46% 48% 50% 44%; }
+ .cloud-6 .p4.shadow { width: 70px; height: 14px; bottom: 0; left: 4px; border-radius: 42% 48% 44% 50%; }
+
+ /* ---- cloud 7: tiny wisp, lower-mid ---- */
+ .cloud-7 {
+ bottom: 28%;
+ left: 15%;
+ width: 70px;
+ height: 35px;
+ animation-delay: 2.2s, 18s;
+ animation-duration: 2.5s, 75s;
+ }
+ .cloud-7 .p1 { width: 32px; height: 26px; bottom: 4px; left: 4px; border-radius: 50% 46% 48% 44%; }
+ .cloud-7 .p2.highlight { width: 30px; height: 28px; bottom: 6px; left: 22px; border-radius: 46% 50% 44% 48%; }
+ .cloud-7 .p3 { width: 24px; height: 20px; bottom: 4px; left: 40px; border-radius: 48% 44% 50% 46%; }
+ .cloud-7 .p4.shadow { width: 58px; height: 12px; bottom: 0; left: 3px; border-radius: 40% 46% 44% 48%; }
+
+ @keyframes cloudFadeIn {
+ from { opacity: 0; transform: scale(0.95); }
+ to { opacity: 1; transform: scale(1); }
+ }
+
+ @keyframes cloudDrift {
+ 0% { transform: translateX(0); }
+ 30% { transform: translateX(18px); }
+ 50% { transform: translateX(25px); }
+ 70% { transform: translateX(15px); }
+ 100% { transform: translateX(0); }
+ }
+
+ .container {
+ position: relative;
+ z-index: 1;
+ text-align: center;
+ padding: 3rem 2rem;
+ max-width: 400px;
+ width: 90%;
+ }
+
+ /* top decorative element */
+ .deco-top {
+ opacity: 0;
+ animation: fadeIn 1s ease forwards 0.2s;
+ margin-bottom: 2.8rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 12px;
+ }
+
+ .deco-line {
+ width: 40px;
+ height: 0.5px;
+ background: rgba(255,255,255,0.6);
+ }
+
+ .deco-dot {
+ width: 4px;
+ height: 4px;
+ border-radius: 50%;
+ background: rgba(255,255,255,0.7);
+ }
+
+ /* main text lines */
+ .line {
+ opacity: 0;
+ transform: translateY(14px);
+ animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+ }
+
+ .line-thai {
+ font-size: clamp(0.85rem, 2.4vw, 0.95rem);
+ color: rgba(255,255,255,0.65);
+ letter-spacing: 0.08em;
+ margin-bottom: 1.6rem;
+ text-shadow: 0 1px 8px rgba(100,160,200,0.3);
+ animation-delay: 0.2s;
+ }
+
+ .line-1 {
+ font-size: clamp(1rem, 3.2vw, 1.18rem);
+ color: #fff;
+ letter-spacing: 0.15em;
+ line-height: 1;
+ margin-bottom: 0.5rem;
+ text-shadow: 0 1px 12px rgba(100,160,200,0.4);
+ animation-delay: 0.6s;
+ }
+
+ .line-2 {
+ font-family: 'Playfair Display', serif;
+ font-style: italic;
+ font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+ color: rgba(255,255,255,0.55);
+ letter-spacing: 0.05em;
+ margin-bottom: 2.6rem;
+ animation-delay: 1s;
+ }
+
+ .line-3 {
+ font-size: clamp(1rem, 3.2vw, 1.15rem);
+ color: #1a3d52;
+ letter-spacing: 0.12em;
+ line-height: 2.5;
+ text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+ animation-delay: 1.8s;
+ }
+
+ .line-4 {
+ font-size: clamp(1rem, 3.2vw, 1.15rem);
+ color: #1a3d52;
+ letter-spacing: 0.12em;
+ line-height: 2.5;
+ text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+ animation-delay: 2.9s;
+ }
+
+ .line-5 {
+ font-size: clamp(1rem, 3.2vw, 1.15rem);
+ color: #1a3d52;
+ letter-spacing: 0.12em;
+ line-height: 2.5;
+ text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+ animation-delay: 4s;
+ }
+
+ /* divider */
+ .divider {
+ opacity: 0;
+ animation: fadeIn 1.2s ease forwards 5.2s;
+ margin: 2.6rem auto;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 8px;
+ }
+
+ .div-line {
+ width: 36px;
+ height: 0.5px;
+ background: rgba(255,255,255,0.5);
+ }
+
+ .div-diamond {
+ width: 5px;
+ height: 5px;
+ border: 0.5px solid rgba(255,255,255,0.6);
+ transform: rotate(45deg);
+ }
+
+ /* IG block */
+ .ig-block {
+ opacity: 0;
+ transform: translateY(8px);
+ animation: fadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 5.8s;
+ }
+
+ .ig-label {
+ font-family: 'Playfair Display', serif;
+ font-style: italic;
+ font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+ color: rgba(255,255,255,0.55);
+ letter-spacing: 0.28em;
+ margin-bottom: 0.7rem;
+ }
+
+ .ig-handle {
+ font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+ font-weight: 300;
+ color: #fff;
+ letter-spacing: 0.18em;
+ text-shadow: 0 2px 16px rgba(80,140,180,0.35);
+ }
+
+ @keyframes fadeUp {
+ from { opacity: 0; transform: translateY(14px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ @keyframes fadeIn {
+ from { opacity: 0; }
+ to { opacity: 1; }
+ }
 </style>
 </head>
 <body>
+
 <div class="bg"></div>
+<div class="sun-halo"></div>
+<div class="sun"></div>
+<div class="sun-rays"></div>
+<div class="cloud-glow glow-1"></div>
+<div class="cloud-glow glow-2"></div>
+
+<div class="cloud cloud-1">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4"></div><div class="puff p5 shadow"></div><div class="puff p6"></div>
+</div>
+<div class="cloud cloud-2">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4"></div><div class="puff p5 shadow"></div>
+</div>
+<div class="cloud cloud-3">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4"></div><div class="puff p5 shadow"></div><div class="puff p6"></div>
+</div>
+<div class="cloud cloud-4">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4 shadow"></div>
+</div>
+<div class="cloud cloud-5">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4"></div><div class="puff p5 shadow"></div>
+</div>
+<div class="cloud cloud-6">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4 shadow"></div>
+</div>
+<div class="cloud cloud-7">
+ <div class="puff p1"></div><div class="puff p2 highlight"></div><div class="puff p3"></div>
+ <div class="puff p4 shadow"></div>
+</div>
+
 <div class="container">
+
+ <div class="deco-top">
+ <div class="deco-line"></div>
+ <div class="deco-dot"></div>
+ <div class="deco-line"></div>
+ </div>
+
  <p class="line line-thai">ขอโทษที่ทำให้เธอเสียใจ</p>
  <p class="line line-1">給 昀 的</p>
  <p class="line line-2">something I should have said</p>
+
  <p class="line line-3">之前的事，是我不好。</p>
  <p class="line line-4">有機會可以的話，</p>
  <p class="line line-5">也許，可以重新認識。</p>
- <div class="ig-block"><p class="ig-label">Instagram</p><p class="ig-handle">mike.yaowei</p></div>
+
+ <div class="divider">
+ <div class="div-line"></div>
+ <div class="div-diamond"></div>
+ <div class="div-line"></div>
+ </div>
+
+ <div class="ig-block">
+ <p class="ig-label">Instagram</p>
+ <p class="ig-handle">mike.yaowei</p>
+ </div>
+
 </div>
+
+
 </body>
 </html>
